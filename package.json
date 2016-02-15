@@ -1,0 +1,17 @@
+{
+  "name": "youtrack-slack-bot",
+  "version": "1.0.0",
+  "description": "Handles YouTrack Notifications of events and changes to relay into slack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Scott",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.3.0",
+    "mailin": "^3.0.3",
+    "request": "^2.69.0"
+  }
+}
