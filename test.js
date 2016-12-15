@@ -2,17 +2,16 @@ var request = require('request');
 var _ = require('lodash');
 
 var text = [
-    'User Alexander Scott changed issue:\nWMS-90 Notification Integration To Slack\nhttps://***REMOVED***.myjetbrains.com/youtrack/issue/WMS-90\n--------------------\nState: In Progress->Reopened\nStatus: CodeShop->Production\n--------------------\nYou received this message because you had enabled notifications for "Unassigned in WMS" saved search and etc.'
-    , 'User Alexander Scott changed issue:\nWMS-90 Notification Integration To Slack\nhttps://***REMOVED***.myjetbrains.com/youtrack/issue/WMS-90\n--------------------\nAssignee: Unassigned->Alexander Scott\n--------------------\nYou received this message because you had enabled notifications for "Unassigned in WMS" saved search and etc.'
-    , 'User Alexander Scott changed issue:\nWMS-90 Notification Integration To Slack\nhttps://***REMOVED***.myjetbrains.com/youtrack/issue/WMS-90\n--------------------\nSummary: CloudPipe Integration To Slack->Notification Integration To Slack\nComment: Test of comment\nhttps://***REMOVED***.myjetbrains.com/youtrack/issue/WMS-90#comment=93-40\nType: Bug->Feature\n--------------------\nYou received this message because you had enabled notifications for "Unassigned in WMS" saved search and etc.'
-    , 'New issue was reported by Alexander Scott:\nWMS-94 Slack Email Notification Test\nhttps://***REMOVED***.myjetbrains.com/youtrack/issue/WMS-94\n--------------------\nIssue was created at 15 Feb 2016 21:24\nDescription: null->This should get sent correctly.\nSummary: null->Slack Email Notification Test\n--------------------\nYou received this message because you had enabled notifications for "WMS" saved search and etc.'
-    , 'User Alexander Scott changed issue:\nWMS-94 Slack Email Notification Test\nhttps://***REMOVED***.myjetbrains.com/youtrack/issue/WMS-94\n--------------------\nState: Submitted->In Progress\n--------------------\nYou received this message because you had enabled notifications for "WMS" saved search and etc.'
+    'User Alexander Scott changed issue:\nWMS-90 Notification Integration To Slack\nhttps://your.host.com/youtrack/issue/WMS-90\n--------------------\nState: In Progress->Reopened\nStatus: CodeShop->Production\n--------------------\nYou received this message because you had enabled notifications for "Unassigned in WMS" saved search and etc.'
+    , 'User Alexander Scott changed issue:\nWMS-90 Notification Integration To Slack\nhttps://your.host.com/youtrack/issue/WMS-90\n--------------------\nAssignee: Unassigned->Alexander Scott\n--------------------\nYou received this message because you had enabled notifications for "Unassigned in WMS" saved search and etc.'
+    , 'User Alexander Scott changed issue:\nWMS-90 Notification Integration To Slack\nhttps://your.host.com/youtrack/issue/WMS-90\n--------------------\nSummary: CloudPipe Integration To Slack->Notification Integration To Slack\nComment: Test of comment\nhttps://your.host.com/youtrack/issue/WMS-90#comment=93-40\nType: Bug->Feature\n--------------------\nYou received this message because you had enabled notifications for "Unassigned in WMS" saved search and etc.'
+    , 'New issue was reported by Alexander Scott:\nWMS-94 Slack Email Notification Test\nhttps://your.host.com/youtrack/issue/WMS-94\n--------------------\nIssue was created at 15 Feb 2016 21:24\nDescription: null->This should get sent correctly.\nSummary: null->Slack Email Notification Test\n--------------------\nYou received this message because you had enabled notifications for "WMS" saved search and etc.'
+    , 'User Alexander Scott changed issue:\nWMS-94 Slack Email Notification Test\nhttps://your.host.com/youtrack/issue/WMS-94\n--------------------\nState: Submitted->In Progress\n--------------------\nYou received this message because you had enabled notifications for "WMS" saved search and etc.'
 ];
 
 var usefulProperties = ['Status', 'State', 'Type'];
 
 function postToSlack(data) {
-    //***REMOVED***
     var formatted = "";
 
     var summary = _.get(data, 'payload.summary');
@@ -40,7 +39,7 @@ function postToSlack(data) {
     }
 
     var options = {
-        uri: '***REMOVED***',
+        uri: process.env.slack_hook,
         method: 'POST',
         json: {
             text: formatted,

@@ -38,7 +38,7 @@ function postToSlack(data) {
     }
 
     var options = {
-        uri: '***REMOVED***',
+        uri: process.env.slack_hook,
         method: 'POST',
         json: {
             text: formatted,
@@ -57,7 +57,7 @@ function postToSlack(data) {
 
 mailin.on('message', function (connection, data, content) {
 
-    if (data.envelopeFrom.address === 'no_reply@jetbrains.com' && data.envelopeTo[0].address === '***REMOVED***') {
+    if (data.envelopeFrom.address === 'no_reply@jetbrains.com' && data.envelopeTo[0].address === process.env.email) {
 
         var detail = {
             payload: {}
